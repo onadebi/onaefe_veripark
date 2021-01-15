@@ -17,7 +17,10 @@ namespace LibraryManagement.Controllers
         // GET: Books
         public ActionResult Index()
         {
-            var books = db.Books.Include(h => h.BorrowHistories)
+            var books = new List<BookViewModel>();
+            try
+            {
+                books = db.Books.Include(h => h.BorrowHistories)
                 .Select(b => new BookViewModel
                 {
                     BookId = b.BookId,
@@ -27,10 +30,15 @@ namespace LibraryManagement.Controllers
                     Title = b.Title,
                     IsAvailable = !b.BorrowHistories.Any(h => h.ReturnDate == null)
                 }).ToList();
+            }
+            catch (Exception)
+            {}
+            
             return View(books);
         }
 
         // GET: Books/Details/5
+        [Authorize(Users = "librarian@veripark.test,supervisor@veripark.test")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -104,7 +112,17 @@ namespace LibraryManagement.Controllers
         // GET: Books/Delete/5
         public ActionResult Delete(int? id)
         {
-            return RedirectToAction("Index");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(book);// RedirectToAction("Index");
         }
 
         // POST: Books/Delete/5
@@ -112,6 +130,9 @@ namespace LibraryManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            Book book = db.Books.Find(id);
+            db.Books.Remove(book);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

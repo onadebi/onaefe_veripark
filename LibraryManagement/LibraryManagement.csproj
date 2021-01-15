@@ -272,6 +272,8 @@
     <Content Include="Views\BorrowHistories\Index.cshtml" />
     <Content Include="Views\BusinessHoliday\Index.cshtml" />
     <Content Include="Views\BusinessHoliday\Edit.cshtml" />
+    <Content Include="Views\BusinessHoliday\Create.cshtml" />
+    <Content Include="Views\BusinessHoliday\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

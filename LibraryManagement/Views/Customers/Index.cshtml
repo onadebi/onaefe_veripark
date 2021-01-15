@@ -1,14 +1,16 @@
-﻿@model IEnumerable<LibraryManagement.Models.Customer>
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<LibraryManagement.Models.Customer>
 
-@{
-    ViewBag.Title = "Customer List";
-}
+@{ ViewBag.Title = "Customer List"; }
 
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @if (User.Identity.GetUserName() == "supervisor@veripark.test")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+            </p>
 <table class="table">
     <tr>
         <th>
@@ -26,26 +28,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NationalID)
-        </td>
-        <td>
-            @Html.ActionLink("View Details", "Details", new { id = item.CustomerId }) |
-            @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contact)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NationalID)
+    </td>
+    <td>
+        @Html.ActionLink("View Details", "Details", new { id = item.CustomerId })
+        @if (User.Identity.GetUserName() == "supervisor@veripark.test")
+        {
+            <text>|</text> @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId }) <text>|</text>
+            @Html.ActionLink("Delete", "Delete", new { id = item.CustomerId })}
+
+    </td>
+</tr>}
 
 </table>

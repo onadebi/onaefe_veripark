@@ -21,6 +21,7 @@ namespace LibraryManagement.Controllers
         }
 
         // GET: Customers/Details/5
+        [Authorize(Users = "librarian@veripark.test,supervisor@veripark.test")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +44,7 @@ namespace LibraryManagement.Controllers
         }
 
         // GET: Customers/Create
+        [Authorize(Users = "supervisor@veripark.test")]
         public ActionResult Create()
         {
             return View();
@@ -66,6 +68,7 @@ namespace LibraryManagement.Controllers
         }
 
         // GET: Customers/Edit/5
+        [Authorize(Users = "supervisor@veripark.test")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -97,6 +100,7 @@ namespace LibraryManagement.Controllers
         }
 
         // GET: Customers/Delete/5
+        [Authorize(Users = "supervisor@veripark.test")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
