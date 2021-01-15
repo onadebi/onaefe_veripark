@@ -1,0 +1,104 @@
+﻿@model LibraryManagement.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NationalID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NationalID)
+        </dd>
+    </dl>
+    <hr />
+    <p>
+        <h4>Borrowal History</h4>
+        <table class="table">
+            <tr>
+                <th>Book Title</th>
+                <th>Borrow Date</th>
+                <th>Return Date</th>
+                <th>Required Return Date</th>
+                <th>Delay (if any)</th>
+            </tr>
+            @if (ViewBag.BorrowHistoryLength < 1)
+            {
+                <tr>
+                    <td colspan="5" class="label-info">No books borrowed by this Customer</td>
+                </tr>
+            }
+            else
+            {
+
+
+                foreach (var item in ViewBag.BorrowHistory)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                var bookBorrowitem = (LibraryManagement.Models.BorrowHistory)item;
+                            }
+                            @*@Html.ActionLink(bookBorrowitem.BookId.ToString(), "Details", "Books", new { id = bookBorrowitem.BookId }, null)*@
+                            @Html.ActionLink(bookBorrowitem.Book.Title, "Details", "Books", new { id = bookBorrowitem.BookId }, null)
+                        </td>
+                        <td>@bookBorrowitem.BorrowDate</td>
+                        <td>
+                            @if (bookBorrowitem.ReturnDate == null)
+                            {
+                                @Html.ActionLink("Return", "Edit", "BorrowHistories", new { id = bookBorrowitem.BookId }, new { @class = "btn btn-success" })
+                            }
+                            else
+                            {
+                                @bookBorrowitem.ReturnDate
+                            }
+                        </td>
+                        <td>@bookBorrowitem.RequiredReturnDate</td>
+                        <td>
+                            @{var delayMessage = "-";
+                                if (bookBorrowitem.ReturnDate != null)
+                                {
+                                    var delay = LibraryManagement.Models.Utilities.CountBusinessDays(bookBorrowitem.ReturnDate.Value, bookBorrowitem.RequiredReturnDate);
+                                    if (delay > 0)
+                                    {
+                                        delayMessage = delay + " days";
+                                    }
+                                }
+                            }
+                            @delayMessage
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </p>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
