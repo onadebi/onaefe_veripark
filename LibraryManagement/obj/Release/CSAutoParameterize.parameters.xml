@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Server=3a3292b8-6de4-4815-8a3a-acb400626256.sqlserver.sequelizer.com;Database=db3a3292b86de448158a3aacb400626256;User ID=gdazhhiqhwpojjpb;Password=TmNUaBqLUAxZWKEak7HeSjDyio6vmsJiVso4eAiV2xiX3BYPvJwwVFtJQpKUE3zB;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ONAEFE\\Desktop\\Practice\\Library\ Management\ 1\.2\\LibraryManagement\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

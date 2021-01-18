@@ -37,7 +37,7 @@ namespace LibraryManagement.Models
             var result = 0;
             try
             {
-                bizHolidays = db.BusinessHolidays.ToList(); //.Where(m => m.FromDate >= DateTime.Now).ToList();
+                bizHolidays = db.BusinessHolidays.Where(m => m.FromDate >= DateTime.Now).ToList();
                 if(bizHolidays != null)
                 {
                     var holiDatesRangeAddition = new List<DateTime>();

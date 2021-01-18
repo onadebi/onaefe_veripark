@@ -157,7 +157,6 @@ C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\bin\Mi
 C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\obj\Debug\LibraryManagement.csprojAssemblyReference.cache
 C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\obj\Debug\LibraryManagement.csproj.CoreCompileInputs.cache
 C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\obj\Debug\LibraryManagement.csproj.CopyComplete
 C:\Users\ONAEFE\Desktop\Practice\Library Management 1.2\LibraryManagement\obj\Debug\LibraryManagement.dll

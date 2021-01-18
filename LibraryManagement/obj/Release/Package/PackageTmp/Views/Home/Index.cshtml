@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+
+
+    th {
+        padding: 5px;
+        align-content: center;
+    }
+
+    td {
+        padding: 2px;
+    }
+</style>
+
+<div class="row">
+    <h2 class="text-danger">Important:</h2>
+    <div class="text-danger">
+        Please make sure you read the entire document before you begin with the assignment. The document below contains following sections -
+        <ol>
+            <li>Overview - explains the existing functionality.</li>
+            <li>Security - the created user name and password.</li>
+            <li>Requirements - your assignment that we request you to undertake.</li>
+        </ol>
+        Output is one part of evaluation. We look forward see good coding practice. Also, we expect your understanding of code, architecture, etc. if you use any internet resource. <br />
+        Good luck on your assignment 😊.
+    </div>
+    <ol type="I">
+        <li class="h3">Overview</li>
+        <content>
+            <p>
+                Consider this a Library Management application. It contains Books and Customers records. A customer can borrow books from Library and then return it. Other customers can borrow a returned book.
+                If a customer borrows a book, he must return it within 14 <b>calendar days</b>; otherwise, he has to pay a penalty of 5 AED for every additional <b>working day</b>.
+                Currently, a working day is considered a day which is not a Saturday and which is not a Sunday.
+                <ol>
+                    <li class="h4">Books</li>
+                    <content>
+                        Book records can be Added, Edited &amp; Viewed details of. No need of DELETE. Finally, a book can be borrowed by Customer.
+                        The Book Module contains following fields -
+                        <ol type="a">
+                            <li>Title</li>
+                            <li>ISBN</li>
+                            <li>Author</li>
+                            <li>Publisher</li>
+                        </ol>
+                    </content>
+                    <li class="h4">Customers</li>
+                    <content>
+                        Customer records can be Added, Viewed details of, Edited and Deleted. While Adding, Editing and Viewing Customer, the following fields are involved -
+                        <ul type="a">
+                            <li>Name</li>
+                            <li>Address</li>
+                            <li>Contact</li>
+                            <li>National ID</li>
+                        </ul>
+                        A
+                        <b>Borrowal History</b> table is also displayed in Customer Detail page which displays all the Books this Customer has borrowed in past.
+                    </content>
+                </ol>
+            </p>
+        </content>
+        <li class="h3">Security</li>
+        <content>
+            <p>There are two users that can login to this application</p>
+            <ol>
+                <li>librarian@veripark.test</li>
+                <li>supervisor@librarian.test</li>
+                <li>Password for both - Password1$</li>
+            </ol>
+        </content>
+        <li class="h3">Requirement</li>
+        <content>
+            <ol>
+                <li>
+                    You are requested to create and implement a new module - <b>"BusinessHoliday"</b>. A Business Holiday would be range of Dates - From and To which reflect one or more Holidays.
+                    The Business Holiday module should display the below fields. <br />
+                    <b>Note:</b> These are only Display Names, you may name the fields in Code / Database according to regular coding standards.
+                </li>
+                <content>
+                    <table class="table-bordered">
+                        <tr>
+                            <td>#</td>
+                            <th width="150px">Display Name</th>
+                            <th>Description</th>
+                            <th>Business Rules</th>
+                        </tr>
+                        <tr>
+                            <td>a.</td>
+                            <td>Holiday Occassion</td>
+                            <td>This is just a of the Holiday for understanding.</td>
+                            <td>
+                                <ul>
+                                    <li>Mandatory field</li>
+                                    <li>Maximum 10 characters</li>
+                                    <li>Should begin with Text of upper case</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>b.</td>
+                            <td>From Date</td>
+                            <td>The date from which this Holiday begins. This date is inclusive of Holiday.</td>
+                            <td>
+                                <ul>
+                                    <li><b>Hint:</b>In some version of Chrome, value isn't displayed in Edit Mode for "DataType.Date." Thus select appropriate formatstring.</li>
+                                    <li>Mandatory field</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>c.</td>
+                            <td>To Date</td>
+                            <td>The date till which this Holiday is valid. This date is inclusive of Holiday.</td>
+                            <td>
+                                <ul>
+                                    <li>Mandatory field</li>
+                                    <li>Same as <i>'From Date'</i> if it is One Day holiday</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>d.</td>
+                            <td>Active ?</td>
+                            <td>If IsActive=True / Yes, Days in this Holiday Range should be skipped during Business Day and Penalty calculation.</td>
+                            <td>
+                                <ul><li>Default value should be Active / Yes / True</li></ul>
+                            </td>
+                        </tr>
+                    </table>
+                </content>
+                <li>Kindly ensure to seed 5 holidays in the upcoming 30 days so that we don't have to run SQL statement while testing your code.</li>
+                <li>Please create a page for displaying a list of Business Holidays with following fields</li>
+                <content>
+                    <ol type="a">
+                        <li>Holiday Occassion</li>
+                        <li>From Date</li>
+                        <li>To Date</li>
+                        <li>Active ?</li>
+                        <li>
+                            <b>Action</b>
+                            - Display links to
+                            <u>Edit</u> and
+                            <u>Delete</u> the Business Holiday.
+                        </li>
+                        <content>
+                            <b>Hint:</b> You do not consider / recalculate date calculations already saved in database if existing Holidays are Edited or Deleted.
+                        </content>
+                    </ol>
+                </content>
+                <li>Business Holidays should be now used while calculation of Penalty Amount if the Book is Returned late</li>
+                <li>Display the title of the Book in the Borrowal History section of Customer Details</li>
+                <li>Same borrow history is displayed in all customer's detail page. Pl check why and make necessary correction.</li>
+                <li>Currently there is no Authorization implemented and all pages and actions are accessible to Anonymous user. Pl implement below authorization.</li>
+                <content>
+                    <ol type="a">
+                        <li>The user librarian@veripark.test should be able to</li>
+                        <content>
+                            <ol type="i">
+                                <li>Borrow &amp; Return books</li>
+                                <li>View Book details</li>
+                                <li>See Borrowal History</li>
+                                <li>View List and Details of Customers and Books</li>
+                            </ol>
+                        </content>
+                        <li>The user supervisor@veripark.test should be able to</li>
+                        <content>
+                            <ol type="i">
+                                <li>do all the tasks librarian@veripark.test has permission to</li>
+                                <li>Add, Edit and Delete Books, Customers and Business Holidays</li>
+                            </ol>
+                        </content>
+                        <li>No Authorization be needed for Viewing Book List or Details</li>
+                    </ol>
+                </content>
+                <li>
+                    The attached excel sheet enlists a few test cases especially for functions inside Utilities.cs. As a preliminary test, ensure that your functions return the expected output as called out in those tables.
+                    Please also note that this excel sheet only covers a small section of testing and not all the requirements.
+                </li>
+            </ol>
+        </content>
+    </ol>
+</div>

@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<LibraryManagement.Models.BusinessHoliday>
+@{
+    ViewBag.Title = "List of Holidays";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @if (User.Identity.GetUserName() == "supervisor@veripark.test")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Holiday Occassion
+        </th>
+        <th>
+            From Date
+        </th>
+        <th>
+            To Date
+        </th>
+        <th>
+            Active
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @item.HolidayOccassion
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FromDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ToDate)
+    </td>
+    <td>
+        @item.Active
+    </td>
+    <td>
+
+        @if (User.Identity.GetUserName() == "supervisor@veripark.test")
+        {
+           @Html.ActionLink("Delete", "Delete", new { id = item.HolidayId }) <text>|</text>
+
+           @Html.ActionLink("Edit", "Edit", new { id = item.HolidayId }, new { @class = "btn btn-success" })
+        }
+
+    </td>
+</tr>
+    }
+
+
+</table>
+
+

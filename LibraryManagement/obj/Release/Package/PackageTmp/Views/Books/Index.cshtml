@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<LibraryManagement.Models.BookViewModel>
+
+@{
+    ViewBag.Title = "List of Books";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @if (User.Identity.GetUserName() == "supervisor@veripark.test")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @if (User.Identity.GetUserName() == "librarian@veripark.test" || User.Identity.GetUserName() == "supervisor@veripark.test")
+                {
+                    @Html.ActionLink("View Details", "Details", new { id = item.BookId }) <text>|</text>
+                }
+
+
+
+                @if (User.IsInRole(LibraryManagement.Models.Constants.SupervisorRoleName))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) <text>|</text>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+                }
+
+                @if (User.Identity.GetUserName() == "librarian@veripark.test" || User.Identity.GetUserName() == "supervisor@veripark.test")
+                {
+
+                    if (item.IsAvailable)
+                    {
+                        @Html.ActionLink("Borrow", "Create", "BorrowHistories", new { id = item.BookId }, new { @class = "btn btn-primary" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Return", "Edit", "BorrowHistories", new { id = item.BookId }, new { @class = "btn btn-success" })
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>
